@@ -29,25 +29,25 @@ console.log ("---- Task 1.2 ----");
 Sample numbers : 0, -1, 4 
 Output : 4, 0, -1 */
 console.log ("---- Task 1.3 ----");
-// let x = 0; let y = -1; let z = 4;
-// let temp;
-// if (x < y) {
-//     temp = x ;
-//     x = y;
-//     y = temp;
-// }
-// if ( x < z)  {
-//     temp = x ;
-//     x = z;
-//     z = temp;
-// }
-// if ( y < z)  {
-//     temp = y ;
-//     y = z;
-//     z = temp;
-// }
-// let array1= [x , y , z];
-// alert (array1);
+let x = 0; let y = -1; let z = 4;
+let temp;
+if (x < y) {
+    temp = x ;
+    x = y;
+    y = temp;
+}
+if ( x < z)  {
+    temp = x ;
+    x = z;
+    z = temp;
+}
+if ( y < z)  {
+    temp = y ;
+    y = z;
+    z = temp;
+}
+let array1= [x , y , z];
+alert (array1);
 /*4. Write a JavaScript conditional statement to find the largest of five numbers. 
 Display an alert box to show the result. Go to the editor 
 Sample numbers : -5, -2, -6, 0, -1 
