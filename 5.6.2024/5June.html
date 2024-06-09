@@ -1,15 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+ul li {
+  padding: 12px 8px 12px 40px;
+  background-color: #888;
+  list-style-type: none;
+  border: 2px solid black;
+  font-size: 18px;
+
+}
+
+ul li:hover {
+  background: #ddd;
+}
+</style> 
 </head>
 <body>
 
-    <script src = "5June.js"></script>
+<div id="myDIV">
+    <center>
+  <h2 style="margin:10px">My Fav Songs</h2>
+  <input type="text" id="myInput" placeholder="add a song...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+</center>
+</div>
+<ul id="myUL">
+  <li>my fav song</li>
+  <li>my second fav song</li>
+  <li>I like this onw too</li>
+</ul>
+
+<script>
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+}
+</script>
+
 </body>
 </html>
