@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Photo Viewer</title>
+</head>
+<body>
+<select id="animalList"></select> <br> <br>
+<div id="animalsPhotos">
+    <img src="catphoto.png" style="width: 300px; height: 200px;">
+</div>
+<script>
+  async function loadData() {
+    const select = document.getElementById("animalList");
+    const Url = "https://66681676f53957909ff67af8.mockapi.io/users/Animals/";
+    const response = await fetch(Url);
+    const animals = await response.json();
+    for (let i = 0; i < animals.length; i++) {
+    const animal = animals[i];
+    const option = document.createElement("option");
+    option.value = animal.id;
+    option.text = animal.name;
+    select.appendChild(option);
+}
+
+    select.addEventListener("change", async function() {
+    const selectedAnimal = animals.find(animal => animal.id === select.value);
+    document.getElementById("animalsPhotos").innerHTML = `<img src="${selectedAnimal.image}" style="width: 300px; height: 200px;">`;
+});
+  }
+loadData();
+
+</script>
+</body>
+</html>
