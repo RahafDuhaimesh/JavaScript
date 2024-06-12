@@ -1,32 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>11June-Task2</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
-<body>
-    <form> 
-        <div id="userForm">
-    <label for="Name">Name : </label>
-         <input type="text" id="Name" > <br>
-    <label for="Age">Age :   </label>
-         <input type="number" id="Age"> <br>
-    <label for="Gender">Gender : </label>
-        <select name="Gender" id="Gender">
-            <option value="Female">Female</option>
-            <option value="Male">Male</option>
-        </select> <br>
-    <label for="birthDate">Birth Date : </label> 
-         <input type="date" id="birthDate" name="birthDate"><br>
-    <label for="img">Your Image : </label>
-         <input type="text" id="img" > <br>
-    </div>     
-    <button type="button" onclick="storeData()">Submit</button>
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+        label {
+            margin: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <form id="userForm">
+<!-- Name -->
+    <label for="name">Name :</label>
+    <input type="text" id="name" name="name" /><br/><br />
+<!-- Age -->
+    <label for="age">Age :</label>
+    <input type="number" id="age" name="age" /><br /><br />
+<!-- Gender -->
+    <label for="gender">Gender :</label>
+    <select id="gender" name="gender">
+        <option value="female">female</option>
+        <option value="male">male</option>
+    </select> <br><br>
+<!-- Birth Date -->
+    <label for="birthdate">Birth Date :</label>
+    <input type="date" id="birth-date" name="birth-date" placeholder="dd.mm.yyyy"><br>
+<!-- Your Image -->
+    <label for="image">Your Image :</label>
+    <input type="text" id="image" name="image"><br>
+<!-- Description -->
+    <label for="description">Description :</label>
+    <input type="text" id="description" name="description"><br><br>
+<!-- Major & University -->
+    <label for="major">Major & University :</label>
+    <input type="text" id="major" name="major" ><br>
+<!-- Programming Language -->
+    <label>Programming Language :</label><br>
+    <input type="checkbox" id="html" name="programmingLanguage" value="HTML">
+        <label for="html">HTML</label>
+    <input type="checkbox" id="css" name="programmingLanguage" value="CSS">
+        <label for="css">CSS</label>
+    <input type="checkbox" id="js" name="programmingLanguage" value="JavaScript">
+        <label for="js">JS</label><br><br>
+<!-- Siblings Number -->
+    <label for="siblingsNumber">Siblings Number :</label>
+    <input type="number" id="siblingsNumber" name="siblingsNumber" ><br><br>
+<!-- Description of Siblings -->
+    <label for="siblingsDescription">Description of Siblings :</label>
+    <input type="text" id="siblingsDescription" name="siblingsDescription"><br><br>
+<!-- Submit -->
+    <button type="submit" id="submit">Submit</button>
     </form>
-      <script src ="11June-Task2.js"></script>
-</body>
+<!-- Java Script -->
+    <script>
+      let myForm = document.getElementById("userForm");
+    //  An event listener is added to the form that listens for the submit event.
+    //  When the form is submitted, it triggers the callback function.
+    // (event) => { ... } anonymous functions callback
+    myForm.addEventListener("submit", (event) => {
+    // This line prevents the default behavior of the form submission,
+    //  which is to reload the page.
+        event.preventDefault();
+        let formData = new FormData(myForm);
+        const data = { programmingLanguage: [] };
+        // This iterates over each key-value pair in the FormData object.
+        //  The callback function takes two parameters: value (the value of the form field) and key (the name of the form field).
+        formData.forEach((value, key) => {
+        //   This checks if the current key is "programmingLanguage". If it is, it pushes the value to the
+        //    programmingLanguage array in the data object. Otherwise, it sets the value for the corresponding key in the data object.
+          if (key === "programmingLanguage") data[key].push(value);
+          else data[key] = value;
+        });
+        let allResponses = localStorage.allResponses;
+        if (!allResponses) allResponses = [];
+        else allResponses = JSON.parse(allResponses);
+        // This adds the data object (which contains the current form submission data) to the allResponses array.
+        allResponses.push(data);
+        localStorage.allResponses = JSON.stringify(allResponses);
+      });
+    </script>
+  </body>
 </html>
